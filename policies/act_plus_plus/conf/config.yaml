@@ -1,0 +1,5 @@
+defaults:
+  - params: base
+  # - override hydra/launcher: one_gpu
+
+debug: false 

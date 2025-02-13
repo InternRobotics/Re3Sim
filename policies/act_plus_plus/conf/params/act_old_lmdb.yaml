@@ -1,0 +1,12 @@
+defaults:
+  - base
+
+task_name: null
+ckpt_dir: ckpt
+policy_class: ACT-isaac-franka
+chunk_size: 100
+seed: 0
+dataset_cls: EpisodicDatasetLmdb
+state_dim: 9
+action_dim: 9
+relative_control: False

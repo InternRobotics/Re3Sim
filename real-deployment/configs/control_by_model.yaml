@@ -1,0 +1,32 @@
+global_params:
+  ckpt_dir: "/home/pjlab/.local/share/ov/pkg/isaac-sim-4.0.0/src/act_plus_plus/data/output/sim_random_robot_base_926/dinov2/1/2024-09-26-11-29-35"
+  policy_class: "ACT"
+  task_name: sim_random_robot_base_926
+  ckpt_names:
+    - policy_last.ckpt
+  chunk_size: 100
+  kl_weight: 10
+  hidden_dim: 512
+  dim_feedforward: 3200
+  num_steps: 0
+  lr: 0.00001
+  seed: 0
+  use_vq: False
+  vq_class: null
+  vq_dim: 0
+  no_encoder: False
+  load_pretrain: False
+  temporal_agg: True
+  log_video: True
+  qpos_noise_std: 0.0
+  backbone: dino_v2
+  relative_control: False
+  camera_names:
+    - right_camera
+    - wrist_camera
+  query_frequency: 10
+  real_camera_names:
+    - right_camera
+    - wrist_camera
+fps: 15
+headless: True

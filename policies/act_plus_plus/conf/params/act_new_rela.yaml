@@ -1,0 +1,12 @@
+defaults:
+  - base
+
+task_name: null
+ckpt_dir: ckpt/act_new_rela
+policy_class: ACT-isaac-franka
+chunk_size: 100
+seed: 0
+dataset_cls: RealRobotDataset
+state_dim: 15
+action_dim: 8
+relative_control: True

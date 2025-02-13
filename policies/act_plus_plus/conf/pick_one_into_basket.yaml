@@ -1,0 +1,17 @@
+defaults:
+  - params: act_old_lmdb
+
+params:
+  augment_type: 10
+  augment_prob: 0.7
+  task_name: pick_one_into_basket_100_quality_10
+  ckpt_dir: ckpt_dir
+  seed: 3
+  num_epochs: 100
+  lr_scheduler: cosine
+  num_warmup_steps: 1000
+  freeze_backbone: true
+
+debug: false 
+save_all_episodes: false 
+

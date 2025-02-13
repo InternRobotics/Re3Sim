@@ -1,0 +1,18 @@
+defaults:
+  - submitit_slurm
+
+# @package hydra.launcher
+submitit_folder: ${hydra.sweep.dir}/.submitit/%j
+_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+partition: smartbot
+name: ${hydra.job.name}
+comment: "test"
+gres: gpu:2
+cpus_per_gpu: 6
+gpus_per_task: 2
+signal_delay_s: 120
+max_num_timeout: 0
+additional_parameters: {}
+array_parallelism: 32
+tasks_per_node: 1
+timeout_min: 8640

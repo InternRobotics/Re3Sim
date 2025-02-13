@@ -1,0 +1,10 @@
+lmdb
+albumentations
+hydra-core
+tensorboard
+# diffusers["torch"]
+transformers
+av
+hydra-core
+h5py
+lmdb

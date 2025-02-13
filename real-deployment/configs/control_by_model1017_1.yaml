@@ -1,0 +1,16 @@
+global_params:
+  ckpt_dir: "/isaac-sim/src/act_plus_plus/data/output/sim_random_position_1017_1_mid/2024-10-19/00-05-00/3/ckpt_dir/2024-10-19-00-05-10-601427_634"
+  ckpt_names:
+    - policy_step_332500_seed_0.ckpt
+  temporal_agg: True
+  real_camera_names:
+    - camera_3
+    - camera_0
+    - camera_1
+    - wrist_camera
+  image_fps: 30
+  image_width: 1280
+  image_height: 720
+fps: 15
+headless: True
+

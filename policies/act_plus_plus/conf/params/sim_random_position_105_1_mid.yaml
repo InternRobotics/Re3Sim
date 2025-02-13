@@ -1,0 +1,5 @@
+defaults:
+  - base
+  - act_old
+
+task_name: sim_random_position_105_1_mid

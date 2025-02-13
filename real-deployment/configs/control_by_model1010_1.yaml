@@ -1,0 +1,33 @@
+global_params:
+  ckpt_dir: "/isaac-sim/src/act_plus_plus/data/output/sim_random_position_1010_1_large/2024-10-11/10-01-52/1/ckpt_dir/2024-10-11-10-02-02-790520_157"
+  policy_class: "ACT"
+  ckpt_names:
+    - policy_step_480000_seed_0.ckpt
+  chunk_size: 100
+  kl_weight: 10
+  hidden_dim: 512
+  dim_feedforward: 3200
+  num_steps: 0
+  lr: 0.00001
+  seed: 0
+  use_vq: False
+  vq_class: null
+  vq_dim: 0
+  no_encoder: False
+  load_pretrain: False
+  temporal_agg: True
+  log_video: True
+  qpos_noise_std: 0.0
+  backbone: dino_v2
+  relative_control: False
+  camera_names:
+    - right_camera
+    - wrist_camera
+  query_frequency: 10
+  real_camera_names:
+    - right_camera
+    - wrist_camera
+  freeze_backbone: True
+fps: 15
+headless: False
+

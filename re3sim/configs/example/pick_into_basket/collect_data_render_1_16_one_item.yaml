@@ -1,0 +1,90 @@
+data_log_root_path: "/isaac-sim/src/logs/random_position_1_16_one_item"
+render: True # whether to render the simulation
+headless: True # in headless environments like docker, this needs to be True
+simulator: # simulator settings
+  physics_dt: 1/30
+  rendering_dt: 1/30
+  render: True
+  rendering_interval: 1
+
+
+tasks:
+- type: "PickAndPlace" # task name, the task class will be instantiated according to this name
+  name: "franka-collecting-data-of-pick-and-place-on-table" # task name, for logging
+  env_num: 1 # parallel environment number, must be 1 for now
+  offset_size: 20.0 # offset size between parallel environments
+  params:
+    task_max_duration: 20 # task max duration in seconds, if the task is not finished in this time, it will be terminated and will not be logged
+    physics_dt: 1/30 # physics simulation time step, must be the same as simulator.physics_dt
+    render: True  # whether to render the simulation, be True in most cases
+    franka_name: "franka"
+    target_position: [-0.22, -0.33, 1.3] # target position (xyz in isaacsim frame) for the robot to move to
+    item_target_region: [[-0.23, 0.1], [-0.5, -0.3]]
+    target_orientation: [0.0, 0.0, 1.0, 0.0]
+    asset_root: data
+    franka_cam_prim_path: "/X1"
+    priviliged_info: True
+    marker_to_isaacsim: [[-1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, -1.0, 0.8], [0.0, 0.0, 0.0, 1.0]]
+    marker_to_robot_base: data/align/marker_2_base.npy
+    random:
+      ItemPoseRandom: 
+        item_random_range: [[-0.34, 0.01], [-0.1, 0.35]]
+      RobotBaseRandom:
+        position_min: [-0.005, -0.005, 0]
+        position_max: [0.005, 0.005, 0]
+      #   delay:
+      #     delay_max: 13  # ( ms )
+      #   item_position:
+      #     min: [0.26, -0.25, 0.9]
+      #     max: [0.36, 0.15, 0.9]
+  background:
+    usd_path: usd/1024/scene_dense_mesh_refine_texture.usd
+    prim_path: "/Table"
+    gs_path: gs-data/1024
+  
+  items:
+    - name: "orange_bottle"
+      type: "usdz"
+      params:
+        path: data/items/orange_bottle3.usd
+        scale: [1, 1, 1]
+        position: [0.0, 0.0, 0.0]
+        frame_name: "isaacsim"
+        orientation: [0.707, 0, 0, 0.707]
+        avoidance_axises: [[0, 1, 0]]
+        pick_height_offset: [-0.03, 0, -0.1]
+        place_height_offset: [0, 0, 0.1]
+        randomize: False
+      prim_path: "/OrangeBottle"
+      randomize_params:
+        random_orientation:
+          rotation_min: [0, 0, -90] # degree of x, y, z
+          rotation_max: [0, 0, 90]
+  cameras: # robot base
+    - name: "camera_0"
+      data_name: "camera_0"
+      fixed: True
+      wrist_camera: False
+      relative_prim: "/camera_0"
+      position: [0.96971275, 0.12246315, 0.79907076]
+      orientation: [-0.15189554, 0.68471294, 0.69626954, -0.15265866]
+      camera_params: [606.18847656, 605.83990479, 313.10461426, 247.62963867, 640, 480] # [fx fy cx cy width height]
+    - name: "wrist_camera"
+      data_name: "wrist_camera"
+      wrist_camera: True
+      relative_prim: "/wrist_camera"
+      fixed: False
+      position: [0.02635563, -0.00455975, 0.02268589]
+      orientation: [ 0.69700858, -0.07635469, -0.09639748, 0.70643933]
+      camera_params: [604.9021606445312, 605.1033325195312, 330.55206298828125, 241.44529724121094, 640, 480] # [fx fy cx cy width height]
+      randomize_params:
+        random_base_position:
+          position_min: [-0.01, -0.01, 0]
+          position_max: [0.01, 0.01, 0]
+        random_base_orientation:
+          rotation_min: [0, 0, 0]
+          rotation_max: [1, 1, 1]
+  robots: []
+
+global_params:
+  bg_collision_mesh_offset: 0.02
