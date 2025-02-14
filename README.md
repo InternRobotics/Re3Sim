@@ -6,8 +6,8 @@
 <a href="http://xshenhan.github.io/Re3Sim/" target="_blank">
     <img alt="Website" src="https://img.shields.io/badge/🌎_Website-RE3SIM-blue.svg" height="25" />
 </a>
-<a href="" target="_blank">
-    <img alt="HF Model: RoboVLMs" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Data-RE3SIM-ffc107?color=ffc107&logoColor=white" height="25" />
+<a href="https://huggingface.co/datasets/RE3SIM/sim-resources" target="_blank">
+    <img alt="HF Data" src="https://img.shields.io/badge/%F0%9F%A4%97%20_Data-RE3SIM-ffc107?color=ffc107&logoColor=white" height="25" />
 </a>
 <a href="https://www.python.org/" target="_blank">
     <img alt="Python 3.10" src="https://img.shields.io/badge/Python-%3E=3.10-blue" height="25" />
