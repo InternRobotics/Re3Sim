@@ -1,6 +1,6 @@
 # Re<sup>3</sup>Sim: Generating High-Fidelity Simulation Data via 3D-Photorealistic Real-to-Sim for Robotic Manipulation
 
-<a href="" target="_blank">
+<a href="https://arxiv.org/abs/2502.08645" target="_blank">
     <img alt="arXiv" src="https://img.shields.io/badge/arXiv-RE3SIM-red?logo=arxiv" height="25" />
 </a>
 <a href="http://xshenhan.github.io/Re3Sim/" target="_blank">
@@ -79,7 +79,7 @@ pip install src/gaussian_splatting/submodules/diff-gaussian-rasterization/
 pip install src/gaussian_splatting/submodules/simple-knn/
 ```
 
-#### install openmvs 
+#### install OpenMVS 
 
 To reconstruct the geometry of the scene, you need to install OpenMVS by following the instructions in the [OpenMVS Wiki](https://github.com/cdcseacave/openMVS/wiki/Building) within the Docker container and add the binary files to the PATH.
 
@@ -200,22 +200,27 @@ torchrun --nproc_per_node=8 --master_port=12314 imitate_episodes_cosine.py --con
 
 ## 📝 TODO List
 
-- \[ \] Polish related codes.
-- \[ \] More tasks.
-- \[ \] A user-friendly GUI.
-- \[ \] Unified rendering implementation and articulation reconstrction.
+- \[ \] Code formatting.
+- \[ \] More real-to-sim-to-real tasks.
+- \[ \] The user-friendly GUI.
+- \[ \] Unified rendering implementation and articulation reconstruction.
 
 ## 🔗 Citation
 
 If you find our work helpful, please cite:
 
 ```latex
-TODO
+@article{han2025re3sim,
+  title={Re$^3$Sim: Generating High-Fidelity Simulation Data via 3D-Photorealistic Real-to-Sim for Robotic Manipulation},
+  author={Han, Xiaoshen and Liu, Minghuan and Chen, Yilun and Yu, Junqiu and Lyu, Xiaoyang and Tian, Yang and Wang, Bolun and Zhang, Weinan and Pang, Jiangmiao},
+  journal={arXiv preprint arXiv:2502.08645},
+  year={2025}
+}
 ```
 
 ## 📄 License
 
-The work is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">Creative Commons Attribution-NonCommercial 4.0 International</a>
+The work is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">Creative Commons Attribution-NonCommercial 4.0 International</a>.
 
 ## 👏 Acknowledgements
 
