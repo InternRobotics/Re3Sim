@@ -10,7 +10,6 @@ act/
 frankapy/tests/
 frankapy/logs/
 .github
-gaussian_splatting/
 assets
 .catkin_*
 frankapy/catkin_ws/src/CMakeLists.txt
@@ -45,10 +44,10 @@ draw_pictures/draw_pictures/visual_comparsion/2024-11-11_13-56-18_972230
 *.pdf
 act_output
 act-data
-gaussian_splatting
 isaacsim-logs
 openMVS
 data/
 .debug.log
 *.run
 self-scripts/
+re3sim/gaussian_splatting/utils/campose2img.py
