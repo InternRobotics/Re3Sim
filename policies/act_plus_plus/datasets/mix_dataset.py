@@ -16,7 +16,6 @@ from pathlib import Path
 import time
 import json
 import lmdb
-import av
 
 try:
     import torch_utils.distributed as dist
@@ -46,8 +45,6 @@ class EpisodicDatasetLmdb(torch.utils.data.Dataset):
                         qpos = np.array(
                             pickle.loads(txn.get("observations/qpos".encode("utf-8")))
                         )
-                        # qvel = np.array(pickle.loads(txn.get("observations/qvel".encode("utf-8"))))
-                        # 读取action数据
                         action = np.array(
                             pickle.loads(txn.get("action".encode("utf-8")))
                         )

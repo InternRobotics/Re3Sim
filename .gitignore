@@ -51,3 +51,4 @@ data/
 *.run
 self-scripts/
 re3sim/gaussian_splatting/utils/campose2img.py
+policies/act_plus_plus/lmdb_data/

@@ -7,15 +7,15 @@ except:
     from tasks.real_task import TASK_CONFIGS as REAL_TASK_CONFIGS
 
 ### Task parameters
-DATA_DIR = "/path/to/act_plus_plus/data"
+DATA_DIR = "/home/hanxiaoshen/main/test-clean/clean_release/policies/act_plus_plus/data"
 SIM_TASK_CONFIGS = {
     # quality test
     "pick_one_into_basket_100_quality_10": {
         "dataset_dir": DATA_DIR + "/pick_one",
-        "description": "Dataset with first 100 files from the original data directory",
+        "description": "Dataset with first 100 files from the original data directory", # not important, just for human reading
         "camera_names": ["camera_0", "wrist_camera"],
-        "num_episodes": 100,
-        "episode_len": -1,
+        "num_episodes": 100, # not important, just for human reading
+        "episode_len": -1, # not important, just for human reading. use -1 to indicate the length is not same for each episode
     },
 }
 SIM_TASK_CONFIGS.update(REAL_TASK_CONFIGS)

@@ -148,7 +148,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
     if SAVE_ALL_EPISODES:
         dist.print0("Saving all episodes")
 
-    # 计算总steps数
+    # Calculate total number of steps
     num_epochs = config["num_epochs"]
     steps_per_epoch = len(train_dataloader)
     total_steps = num_epochs * steps_per_epoch
@@ -195,10 +195,10 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
     for epoch in range(num_epochs):
         dist.print0(f"Epoch {epoch}/{num_epochs}")
 
-        # 训练阶段
+        # Training phase
         policy.train()
 
-        # 为每个epoch创建进度条
+        # Create progress bar for each epoch
         if dist.get_rank() == 0:
             pbar = tqdm(total=steps_per_epoch, desc=f"Epoch {epoch}")
 
@@ -214,7 +214,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
             lr_scheduler.step()
 
             if dist.get_rank() == 0:
-                # 更新进度条
+                # Update progress bar
                 pbar.update(1)
                 pbar.set_postfix(
                     {
@@ -223,14 +223,14 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
                     }
                 )
 
-                # tensorboard记录
+                # Tensorboard logging
                 logger_writter.add_scalar(
                     "lr", optimizer.param_groups[0]["lr"], global_step=global_step
                 )
                 for k, v in forward_dict.items():
                     logger_writter.add_scalar(k, v, global_step=global_step)
 
-            # 验证阶段 - 基于step控制
+            # Validation phase - controlled by steps
             if global_step % validate_every == 0 and global_step > 0:
                 dist.print0("Validating...")
                 with torch.inference_mode():
@@ -260,7 +260,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
                         for k, v in validation_summary.items():
                             logger_writter.add_scalar(k, v, global_step=global_step)
 
-                    # 将验证结果合并到训练进度条中
+                    # Merge validation results into training progress bar
                     if dist.get_rank() == 0:
                         pbar.set_postfix(
                             {
@@ -278,7 +278,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
                     dist.print0(summary_string)
                     policy.train()
 
-            # 保存检查点 - 基于step控制
+            # Save checkpoints - controlled by steps
             if dist.get_rank() == 0 and global_step % save_every == 0:
                 ckpt_path = os.path.join(
                     ckpt_dir, f"policy_step_{global_step}_seed_{seed}.ckpt"
@@ -296,10 +296,10 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
                     )
 
                     if len(sorted_ckpts) > 5:
-                        checkpoints_to_keep = sorted_ckpts[-5:]  # 保留最新的5个
+                        checkpoints_to_keep = sorted_ckpts[-5:]  # Keep latest 5
                         for ckpt in sorted_ckpts[:-5]:
                             step_num = int(ckpt_pattern.match(ckpt).group(1))
-                            if step_num % 20000 == 0:  # 每20000步保留一个
+                            if step_num % 20000 == 0:  # Keep one every 20000 steps
                                 checkpoints_to_keep.append(ckpt)
                             elif step_num % 1000 == 0 and step_num > (
                                 total_steps * 0.9
@@ -313,7 +313,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
         if dist.get_rank() == 0:
             pbar.close()
 
-    # 保存最终模型
+    # Save final model
     if dist.get_rank() == 0:
         ckpt_path = os.path.join(ckpt_dir, f"policy_last.ckpt")
         torch.save(policy.model.module.state_dict(), ckpt_path)
@@ -333,7 +333,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
 def repeater(data_loader):
     epoch = 0
     while True:
-        # 如果data_loader有sampler属性,并且sampler有set_epoch方法
+        # If data_loader has sampler attribute and sampler has set_epoch method
         if hasattr(data_loader, "sampler") and hasattr(
             data_loader.sampler, "set_epoch"
         ):

@@ -191,12 +191,15 @@ torchrun --nproc_per_node=8 --node_rank=1 --nnodes=2 --master_addr=<master ip> -
 ```
 
 #### Example
-We provide the data of `pick a bottle` task [here](https://huggingface.co/datasets/RE3SIM/act-dataset). And we show how to train the policy with our data. Please download the dataset and place them in `clean/policies/act_plus_plus/lmdb_data` 
+We provide the data of `pick a bottle` task [here](https://huggingface.co/datasets/RE3SIM/act-dataset). And we show how to train the policy with our data. Please download the dataset and place them in `policies/act_plus_plus/lmdb_data` 
 ```shell
-python process_data.py --source-path /path/to/act_plus_plus/lmdb_data/pick_one --output-path /path/to/act_plus_plus/data/pick_one
+# in policies/act_plus_plus
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+python process_data.py --source-path lmdb_data/pick_one --output-path data/pick_one --file-name _keys.json
 # The configs are in `constants.py` and `conf/pick_one_into_basket.yaml`
 torchrun --nproc_per_node=8 --master_port=12314 imitate_episodes_cosine.py --config-path=conf --config-name=pick_one_into_basket hydra.job.chdir=True params.num_epochs=24 params.seed=100
 ```
+Note: The data paths are jointly indexed through `constants.py` and `conf/*.yaml`. For custom datasets, you need to add a task in `constants.py` (new element of the `SIM_TASK_CONFIGS` dictionary) and create a yaml file where the `params.task_name` matches the key in `constants.py`.
 
 ## 📝 TODO List
 

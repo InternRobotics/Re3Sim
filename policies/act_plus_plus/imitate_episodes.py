@@ -244,14 +244,14 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
                     existing_ckpts, key=lambda x: int(ckpt_pattern.match(x).group(1))
                 )
 
-                # 保留最后5个checkpoint和step是20000倍数的checkpoint
+                # Keep last 5 checkpoints and checkpoints at steps that are multiples of 20000
                 if len(sorted_ckpts) > 5 and not SAVE_ALL_EPISODES:
-                    checkpoints_to_keep = sorted_ckpts[-5:]  # 保留最新的5个
+                    checkpoints_to_keep = sorted_ckpts[-5:]  # Keep latest 5
                     for ckpt in sorted_ckpts[:-5]:
                         step_num = int(ckpt_pattern.match(ckpt).group(1))
-                        if step_num % 20000 == 0:  # 如果step是20000的倍数则保留
+                        if step_num % 20000 == 0:  # Keep if step is multiple of 20000
                             checkpoints_to_keep.append(ckpt)
-                        else:  # 否则删除
+                        else:  # Otherwise delete
                             os.remove(os.path.join(ckpt_dir, ckpt))
         mystamp("save_ckpt")
         if USE_GT:
@@ -276,7 +276,7 @@ def train_bc(train_dataloader, val_dataloader, config, logger_writter):
 def repeater(data_loader):
     epoch = 0
     while True:
-        # 如果data_loader有sampler属性,并且sampler有set_epoch方法
+        # If data_loader has sampler attribute and sampler has set_epoch method
         if hasattr(data_loader, "sampler") and hasattr(
             data_loader.sampler, "set_epoch"
         ):

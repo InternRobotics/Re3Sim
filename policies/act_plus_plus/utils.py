@@ -16,11 +16,9 @@ try:
     from datasets.episodic_dataset import EpisodicDataset
     from datasets.real_robot_dataset import RealRobotDataset
     from datasets.real_world_episodic_dataset import RealWorldEpisodicDataset
-    from datasets.episodic_dataset_mp4 import EpisodicDatasetMp4
     from datasets.episodic_dataset_jpg import EpisodicDatasetJpg
     from datasets.episodic_dataset_jpg_continue import EpisodicDatasetJpgContinue
     from datasets.episodic_dataset_lmdb import EpisodicDatasetLmdb
-    from datasets.episodic_dataset_lmdb_condition import EpisodicDatasetLmdbCondition
     from datasets.episodic_dataset_lmdb_expand_last_step import (
         EpisodicDatasetLmdbExpandLastStep,
     )
@@ -36,11 +34,9 @@ except Exception as e:
     from .datasets.episodic_dataset import EpisodicDataset
     from .datasets.real_robot_dataset import RealRobotDataset
     from .datasets.real_world_episodic_dataset import RealWorldEpisodicDataset
-    from .datasets.episodic_dataset_mp4 import EpisodicDatasetMp4
     from .datasets.episodic_dataset_jpg import EpisodicDatasetJpg
     from .datasets.episodic_dataset_jpg_continue import EpisodicDatasetJpgContinue
     from .datasets.episodic_dataset_lmdb import EpisodicDatasetLmdb
-    from .datasets.episodic_dataset_lmdb_condition import EpisodicDatasetLmdbCondition
     from .datasets.episodic_dataset_lmdb_expand_last_step import (
         EpisodicDatasetLmdbExpandLastStep,
     )
@@ -318,7 +314,6 @@ def load_data(
     #     dist.print0('Loaded pretrain dataset stats')
     if (
         dataset_cls == "EpisodicDataset"
-        or dataset_cls == "EpisodicDatasetMp4"
         or dataset_cls == "EpisodicDatasetJpg"
         or dataset_cls == "EpisodicDatasetJpgContinue"
     ):
@@ -337,10 +332,6 @@ def load_data(
         _, all_episode_len = EpisodicDatasetLmdb.get_norm_stats(dataset_path_list)
     elif dataset_cls == "EpisodicDatasetLmdbExpandLastStep":
         _, all_episode_len = EpisodicDatasetLmdbExpandLastStep.get_norm_stats(
-            dataset_path_list
-        )
-    elif dataset_cls == "EpisodicDatasetLmdbCondition":
-        _, all_episode_len = EpisodicDatasetLmdbCondition.get_norm_stats(
             dataset_path_list
         )
     else:
@@ -362,7 +353,6 @@ def load_data(
 
     if (
         dataset_cls == "EpisodicDataset"
-        or dataset_cls == "EpisodicDatasetMp4"
         or dataset_cls == "EpisodicDatasetJpg"
         or dataset_cls == "EpisodicDatasetJpgContinue"
     ):
@@ -421,15 +411,6 @@ def load_data(
                 ]
             )
         )
-    elif dataset_cls == "EpisodicDatasetLmdbCondition":
-        norm_stats, _ = EpisodicDatasetLmdbCondition.get_norm_stats(
-            flatten_list(
-                [
-                    find_all_hdf5(stats_dir, skip_mirrored_data)
-                    for stats_dir in stats_dir_l
-                ]
-            )
-        )
     dist.print0(f"Norm stats from: {stats_dir_l}")
 
     if dataset_cls == "EpisodicDataset":
@@ -444,29 +425,6 @@ def load_data(
             train_transform,
         )
         val_dataset = EpisodicDataset(
-            dataset_path_list,
-            camera_names,
-            norm_stats,
-            val_episode_ids,
-            val_episode_len,
-            chunk_size,
-            relative_control,
-            val_transform,
-        )
-    elif dataset_cls == "EpisodicDatasetMp4":
-        train_dataset = EpisodicDatasetMp4(
-            original_dataset_root_path,
-            dataset_path_list,
-            camera_names,
-            norm_stats,
-            train_episode_ids,
-            train_episode_len,
-            chunk_size,
-            relative_control,
-            train_transform,
-        )
-        val_dataset = EpisodicDatasetMp4(
-            original_dataset_root_path,
             dataset_path_list,
             camera_names,
             norm_stats,
@@ -618,27 +576,6 @@ def load_data(
             train_transform,
         )
         val_dataset = EpisodicDatasetLmdbExpandLastStep(
-            dataset_path_list,
-            camera_names,
-            norm_stats,
-            val_episode_ids,
-            val_episode_len,
-            chunk_size,
-            relative_control,
-            val_transform,
-        )
-    elif dataset_cls == "EpisodicDatasetLmdbCondition":
-        train_dataset = EpisodicDatasetLmdbCondition(
-            dataset_path_list,
-            camera_names,
-            norm_stats,
-            train_episode_ids,
-            train_episode_len,
-            chunk_size,
-            relative_control,
-            train_transform,
-        )
-        val_dataset = EpisodicDatasetLmdbCondition(
             dataset_path_list,
             camera_names,
             norm_stats,

@@ -62,7 +62,6 @@ class EpisodicDatasetJpgContinue(torch.utils.data.Dataset):
         self.all_data_in_mem = all_data_in_mem
 
     def initialize(self):
-        """初始化视频管理器，确保在DDP训练时正确共享实例"""
         if not self._initialized:
             self._initialized = True
             self.__getitem__(0)  # initialize self.is_sim and self.transformations

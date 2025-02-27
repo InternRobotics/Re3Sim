@@ -140,22 +140,18 @@ class DINOv2BackBone(nn.Module):
 
             traceback.print_exc()
             dist.print0(f"Failed to load dinov2 from torch hub, loading from local")
-            # 指定本地权重文件路径
             weights_path = os.path.expanduser(
                 f"~/.cache/torch/hub/checkpoints/{backone_name}_pretrain.pth"
             )
 
-            # 指定本地代码路径
             code_path = os.path.expanduser(
                 "~/.cache/torch/hub/facebookresearch_dinov2_main"
             )
 
-            # 从本地加载模型
             self.body = torch.hub.load(
                 code_path, backone_name, source="local", pretrained=False
             )
 
-            # 手动加载权重
             state_dict = torch.load(weights_path)
             self.body.load_state_dict(state_dict)
         if backone_name == "dinov2_vits14":

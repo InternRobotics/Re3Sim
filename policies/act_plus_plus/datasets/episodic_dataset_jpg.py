@@ -62,7 +62,7 @@ class EpisodicDatasetJpg(torch.utils.data.Dataset):
         self.mask_free_items = 0
         self.all_data_in_mem = all_data_in_mem
         if all_data_in_mem:
-            # 如果是DDP训练，等待所有进程初始化完成
+            # For DDP training, wait for all processes to complete initialization
             if torch.distributed.is_initialized():
                 self.video_transfer = JpgToShm(self.original_dataset_root_path)
                 if dist.get_rank() == 0:
@@ -73,17 +73,17 @@ class EpisodicDatasetJpg(torch.utils.data.Dataset):
                 self.video_transfer.copy_videos()
 
     def initialize(self):
-        """初始化视频管理器，确保在DDP训练时正确共享实例"""
+        """Initialize video manager and ensure proper instance sharing in DDP training"""
         if not self._initialized:
             self._initialized = True
             self.__getitem__(0)  # initialize self.is_sim and self.transformations
 
     # def initialize(self):
-    #     """初始化视频管理器，确保在DDP训练时正确共享实例"""
+    #     """Initialize video manager and ensure proper instance sharing in DDP training"""
     #     if not self._initialized:
     #         self._initialized = True
 
-    #         # 如果是DDP训练，等待所有进程初始化完成
+    #         # For DDP training, wait for all processes to complete initialization
     #         if torch.distributed.is_initialized():
     #             if dist.get_rank() == 0:
     #                 video_manager = FastVideoReader(self.original_dataset_root_path)

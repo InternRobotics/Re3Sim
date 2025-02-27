@@ -46,7 +46,6 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
                         qvel = np.array(
                             pickle.loads(txn.get("observations/qvel".encode("utf-8")))
                         )
-                        # 读取action数据
                         action = np.array(
                             pickle.loads(txn.get("action".encode("utf-8")))
                         )
@@ -140,7 +139,6 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
         self.all_data_in_mem = all_data_in_mem
 
     def initialize(self):
-        """初始化视频管理器，确保在DDP训练时正确共享实例"""
         if not self._initialized:
             self._initialized = True
             self.__getitem__(0)  # initialize self.is_sim and self.transformations
@@ -294,10 +292,10 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
         try:
             lmdb_path = str(
                 Path(os.path.realpath(dataset_path)).parent / "lmdb"
-            )  # dataset_path直接就是lmdb路径
+            )  # dataset_path is the path to the lmdb folder
             with lmdb.open(lmdb_path, lock=False) as lmdb_env:
                 with lmdb_env.begin(write=False) as txn:
-                    # 读取action数据
+                    # read action data
                     action = np.array(pickle.loads(txn.get("action".encode("utf-8"))))
                     base_action_bytes = txn.get("base_action".encode("utf-8"))
                     if base_action_bytes is not None:
@@ -308,7 +306,7 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
                         dummy_base_action = np.zeros([action.shape[0], 2])
                         action = np.concatenate([action, dummy_base_action], axis=-1)
 
-                    # 读取状态数据
+                    # read qpos data
                     qpos = pickle.loads(txn.get(f"observations/qpos".encode("utf-8")))[
                         start_ts
                     ]
@@ -319,10 +317,10 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
                     original_action_shape = action.shape
                     episode_len = original_action_shape[0]
 
-                    # 读取图像数据
+                    # read image data
                     image_dict = dict()
                     for cam_name in self.camera_names:
-                        # 尝试读取固定渲染图像
+                        # try to read fixed render image
                         fix_render_key = (
                             f"observations/fix_render_images/{cam_name}".encode("utf-8")
                         )
@@ -333,7 +331,7 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
                                 pickle.loads(render_image_bytes)
                             ).reshape(np.array(sim_image).shape)
                         else:
-                            # 读取普通渲染图像
+                            # read normal render image
                             render_key = f"observations/render_images/{cam_name}/{start_ts}".encode(
                                 "utf-8"
                             )
@@ -341,7 +339,7 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
                                 pickle.loads(txn.get(render_key)), cv2.IMREAD_COLOR
                             )
 
-                        # 读取sim图像和mask
+                        # read sim image and mask
                         sim_key = (
                             f"observations/sim_images/{cam_name}/{start_ts}".encode(
                                 "utf-8"
@@ -358,7 +356,7 @@ class EpisodicDatasetLmdbExpandLastStep(torch.utils.data.Dataset):
                             pickle.loads(txn.get(mask_key)), cv2.IMREAD_GRAYSCALE
                         )
 
-                        # 读取picking item信息
+                        # read picking item information
                         with open(
                             Path(os.path.realpath(dataset_path)).parent / "info.json",
                             "r",

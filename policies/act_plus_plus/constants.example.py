@@ -231,65 +231,6 @@ SIM_TASK_CONFIGS = {
         "episode_len": -1,
         "camera_names": ["camera_0", "wrist_camera"],
     },
-    # mp4 1m
-    "sim_random_position_1027_1_little_orientation_h264_1m_mid_wo3": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_1m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_0", "camera_1", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_1m",
-    },
-    "sim_random_position_1027_1_little_orientation_h264_1m_mid_wo03": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_1m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_1", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_1m",
-    },
-    "sim_random_position_1027_1_little_orientation_h264_1m_mid_wo13": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_1m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_0", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_1m",
-    },
-    # mp4 0.5m
-    "sim_random_position_1027_1_little_orientation_h264_0.5m_mid_wo3": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_0.5m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_0", "camera_1", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_0.5m",
-    },
-    "sim_random_position_1027_1_little_orientation_h264_0.5m_mid_wo03": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_0.5m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_1", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_0.5m",
-    },
-    "sim_random_position_1027_1_little_orientation_h264_0.5m_mid_wo13": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_0.5m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_0", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_0.5m",
-    },
-    # mp4 0.3m
-    "sim_random_position_1027_1_little_orientation_h264_0.3m_mid_wo3": {
-        "dataset_dir": DATA_DIR
-        + "/random_position_1027_1_little_orientation_h264_0.3m/mid",
-        "num_episodes": 759,
-        "episode_len": -1,
-        "camera_names": ["camera_0", "camera_1", "wrist_camera"],
-        "original_dataset_root_path": "/path/to/isaacsim-data/random_position_1027_1_little_orientation_h264_0.3m",
-    },
     "sim_random_position_1027_1_little_orientation_h264_0.3m_mid_wo03": {
         "dataset_dir": DATA_DIR
         + "/random_position_1027_1_little_orientation_h264_0.3m/mid",
