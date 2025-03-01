@@ -170,7 +170,7 @@ pip install -e .
 ```
 2. check data and remove broken files (optional)
 ```shell
-python <path to the data> # use --fast flag to enable a partly check.
+python <path to the data> # use --fast flag to enable a partial check.
 ```
 3. process data to get act dataset:
 ```shell
@@ -191,7 +191,7 @@ torchrun --nproc_per_node=8 --node_rank=1 --nnodes=2 --master_addr=<master ip> -
 ```
 
 #### Example
-We provide the data of `pick a bottle` task [here](https://huggingface.co/datasets/RE3SIM/act-dataset). And we show how to train the policy with our data. Please download the dataset and place them in `policies/act_plus_plus/lmdb_data` 
+We provide the data for the `pick a bottle` task [here](https://huggingface.co/datasets/RE3SIM/act-dataset). And we show how to train the policy with our data. Please download the dataset and place them in `policies/act_plus_plus/lmdb_data` 
 ```shell
 # in policies/act_plus_plus
 export PYTHONPATH=$PYTHONPATH:$(pwd)
