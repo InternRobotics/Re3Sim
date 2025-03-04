@@ -170,7 +170,7 @@ pip install -e .
 ```
 2. check data and remove broken files (optional)
 ```shell
-python <path to the data> # use --fast flag to enable a partial check.
+python ../re3sim/utils/check_lmdb.py  <path to the data> # use --fast flag to enable a partial check.
 ```
 3. process data to get act dataset:
 ```shell
