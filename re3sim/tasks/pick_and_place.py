@@ -218,7 +218,7 @@ class PickAndPlace(BaseTask):
                 usd_path=self.config.params.get("franka_usd_path", None),
             )
         except:
-            prim = Prim(prim_path=self._franka_prim_path)
+            prim = XFormPrim(prim_path=self._franka_prim_path)
             robot = Franka(
                 prim_path=self._franka_prim_path,
                 name=self._franka_robot_name,
