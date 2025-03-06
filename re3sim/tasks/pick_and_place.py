@@ -211,11 +211,19 @@ class PickAndPlace(BaseTask):
         xform.set_local_pose(
             translation=[0.0, 0.0, 0.0], orientation=[1.0, 0.0, 0.0, 0.0]
         )
-        robot = Franka(
-            prim_path=self._franka_prim_path,
-            name=self._franka_robot_name,
-            usd_path=self.config.params.get("franka_usd_path", None),
-        )
+        try:
+            robot = Franka(
+                prim_path=self._franka_prim_path,
+                name=self._franka_robot_name,
+                usd_path=self.config.params.get("franka_usd_path", None),
+            )
+        except:
+            prim = Prim(prim_path=self._franka_prim_path)
+            robot = Franka(
+                prim_path=self._franka_prim_path,
+                name=self._franka_robot_name,
+                usd_path=self.config.params.get("franka_usd_path", None),
+            )
         robot.set_local_pose(
             translation=franka_translations, orientation=franka_orientations
         )
