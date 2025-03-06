@@ -54,7 +54,7 @@ ENV ISAACSIM_PYTHON_EXE="${ISAACSIM_PATH}/python.sh"
 
 RUN ./isaaclab.sh --conda py10
 
-RUN ./isaaclab.sh --install 
+# RUN ./isaaclab.sh --install none
 
 # Install other dependencies
 # gaussian-splatting

@@ -448,5 +448,7 @@ def get_image(images_dict, camera_names, rand_crop_resize=False):
 
 
 if __name__ == "__main__":
-    sim_config = SimulatorConfig("/tmp/config.yaml")
+    sim_config = SimulatorConfig(
+        "/path/to/Re3Sim/re3sim/configs/example/pick_into_basket/eval_one_item_12_19.yaml"
+    )
     main(sim_config)

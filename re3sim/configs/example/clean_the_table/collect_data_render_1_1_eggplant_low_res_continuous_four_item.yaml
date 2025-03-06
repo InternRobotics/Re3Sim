@@ -28,6 +28,7 @@ tasks:
     priviliged_info: True
     marker_to_isaacsim: [[-1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, -1.0, 0.8], [0.0, 0.0, 0.0, 1.0]]
     marker_to_robot_base: data/align/marker_2_base.npy
+    # franka_usd_path: /path/to/Re3Sim/re3sim/Collected_franka/franka.usd
     random:
       ItemPoseRandom: 
         item_random_range: [[-0.34, 0.01], [-0.1, 0.35]]

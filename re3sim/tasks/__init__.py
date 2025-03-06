@@ -3,6 +3,7 @@ from .metric import *
 
 try:
     from .pick_and_place import *
+    from .eval_pick_and_place import *
 except Exception as e:
     import traceback
 

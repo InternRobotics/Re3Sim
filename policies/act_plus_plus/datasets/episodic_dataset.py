@@ -19,7 +19,7 @@ import json
 try:
     import torch_utils.distributed as dist
 except:
-    from src.act_plus_plus.torch_utils import distributed as dist
+    from real2sim2real.act_plus_plus.torch_utils import distributed as dist
 e = IPython.embed
 
 

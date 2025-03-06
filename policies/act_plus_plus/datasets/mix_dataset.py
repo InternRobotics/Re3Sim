@@ -22,7 +22,7 @@ try:
     from datasets.episodic_dataset_lmdb import EpisodicDatasetLmdb
     from datasets.real_world_episodic_dataset_lmdb import RealWorldEpisodicLmdbDataset
 except:
-    from src.act_plus_plus.torch_utils import distributed as dist
+    from real2sim2real.act_plus_plus.torch_utils import distributed as dist
 from .jpg_manager import JpgToShm
 
 e = IPython.embed

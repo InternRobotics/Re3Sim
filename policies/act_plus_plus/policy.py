@@ -12,7 +12,7 @@ except:
 import numpy as np
 
 try:
-    from src.act_plus_plus.detr.main import build_ACT_model_and_optimizer
+    from real2sim2real.act_plus_plus.detr.main import build_ACT_model_and_optimizer
 except:
     from detr.main import build_ACT_model_and_optimizer
 import IPython

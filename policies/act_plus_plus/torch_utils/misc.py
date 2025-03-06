@@ -14,7 +14,7 @@ import warnings
 try:
     import dnnlib
 except:
-    from src.act_plus_plus import dnnlib
+    from real2sim2real.act_plus_plus import dnnlib
 
 # ----------------------------------------------------------------------------
 # Cached construction of constant tensors. Avoids CPU=>GPU copy when the

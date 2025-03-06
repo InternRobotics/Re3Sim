@@ -7,7 +7,7 @@ import argparse
 import matplotlib.pyplot as plt
 
 try:
-    from src.act_plus_plus.constants import DT
+    from real2sim2real.act_plus_plus.constants import DT
 except:
     from constants import DT
 

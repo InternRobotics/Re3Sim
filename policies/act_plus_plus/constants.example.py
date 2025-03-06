@@ -2,7 +2,7 @@ import pathlib
 import os
 
 try:
-    from src.act_plus_plus.tasks.real_task import TASK_CONFIGS as REAL_TASK_CONFIGS
+    from real2sim2real.act_plus_plus.tasks.real_task import TASK_CONFIGS as REAL_TASK_CONFIGS
 except:
     from tasks.real_task import TASK_CONFIGS as REAL_TASK_CONFIGS
 

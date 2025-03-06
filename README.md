@@ -71,6 +71,13 @@ docker run --name re3sim --entrypoint bash -itd --runtime=nvidia --gpus='"device
     re3sim:1.0.0
 ```
 
+Install IsaacLab:v1.1.0 
+```shell
+# in docker
+cd /root/IsaacLab
+./isaaclab.sh --install none
+```
+
 Install [CUDA 11.8](https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_520.61.05_linux.run) in the Docker container. Then, install `diff-gaussian-rasterization` and `simple-knn`:
 
 ```shell
@@ -85,6 +92,11 @@ To reconstruct the geometry of the scene, you need to install OpenMVS by followi
 
 After that, we recommend saving the Docker image with `docker commit`.
 
+> The code in the docker may encounter some network issues, you can try to install the environment in the local machine following [this instruction](./re3sim/manual-install.md) or uncomment this line in the yaml files:
+> ```
+> franka_usd_path: /path/to/Re3Sim/re3sim/Collected_franka/franka.usd
+> ```
+
 ### Getting Started
 
 #### Real-to-Sim in Predefined Scene
@@ -92,20 +104,22 @@ After that, we recommend saving the Docker image with `docker commit`.
 We offer the necessary resources [here](https://huggingface.co/datasets/RE3SIM/sim-resources). You can download them and place them in the following path:
 
 ```
-<project root>
-    - existing code
-    - data/
-        - align/
-        - gs-data/
-        - items/
-        - urdfs/
-        - usd/
+# in docker
+/isaac-sim/
+    - src
+        - data/
+            - align/
+            - gs-data/
+            - items/
+            - urdfs/
+            - usd/
 ```
 
 - **Collect data in simulator**
 - collect data for pick and place tasks
 ```shell
-python src/standalone/clean_example/pick_into_basket_lmdb.py
+# in /isaac-sim/src
+python standalone/clean_example/pick_into_basket_lmdb.py
 ```
 
 - **Visualize the Data**
@@ -200,6 +214,9 @@ python process_data.py --source-path lmdb_data/pick_one --output-path data/pick_
 torchrun --nproc_per_node=8 --master_port=12314 imitate_episodes_cosine.py --config-path=conf --config-name=pick_one_into_basket hydra.job.chdir=True params.num_epochs=24 params.seed=100
 ```
 Note: The data paths are jointly indexed through `constants.py` and `conf/*.yaml`. For custom datasets, you need to add a task in `constants.py` (new element of the `SIM_TASK_CONFIGS` dictionary) and create a yaml file where the `params.task_name` matches the key in `constants.py`.
+
+
+> To evaluate the policy in simulation, please refer to [eval.md](./re3sim/eval.md).
 
 ## 📝 TODO List
 

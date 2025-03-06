@@ -19,3 +19,5 @@ loguru
 plyfile
 pycolmap
 lmdb
+zarr
+pynput

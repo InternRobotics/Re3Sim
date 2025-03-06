@@ -23,7 +23,7 @@ e = IPython.embed
 try:
     from torch_utils import distributed as dist
 except:
-    from src.act_plus_plus.torch_utils import distributed as dist
+    from real2sim2real.act_plus_plus.torch_utils import distributed as dist
 
 
 class FrozenBatchNorm2d(torch.nn.Module):
