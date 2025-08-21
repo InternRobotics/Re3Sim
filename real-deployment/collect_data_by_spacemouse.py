@@ -9,7 +9,7 @@ import random
 import cv2
 import re
 from scipy.spatial.transform import Rotation as R
-from src.frankapy.src.realrobot import PandaRealRobot
+from realrobot import PandaRealRobot
 from multiprocessing import Process, Queue, Lock
 import pyspacemouse
 from pynput import keyboard
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     translation_scale = 0.005
     rotation_scale = 0.5
     gripper_open = True
-    data_dir = "/home/pjlab/.local/share/ov/pkg/isaac-sim-4.0.0/src/frankapy/logs"
+    data_dir = "/path/to/your/data/dir"
     data_dir = get_log_folder(data_dir)
     real_robot = PandaRealRobot()
     # real_robot.close_gripper()

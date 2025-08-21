@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from pathlib import Path
 from scipy.spatial.transform import Rotation as R
-from src.frankapy.src.utils.arcuo_marker import estimate_pose
+from real2sim2real.utils.arcuo_marker import estimate_pose
 
 
 def calibrate_camera_to_base(intrinsic_matrix, image_path, output_path):

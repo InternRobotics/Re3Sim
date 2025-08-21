@@ -26,7 +26,7 @@ from policies.act_plus_plus.policy import ACTPolicy, CNNMLPPolicy
 from policies.act_plus_plus.visualize_episodes import save_videos
 from policies.act_plus_plus.detr.models.latent_model import Latent_Model_Transformer
 from .realsense_reader import MultiRealSenseCamera
-from .realrobot import RealRobot
+from .realrobot import RealRobot # deprecated: use PandaRealRobot instead finally
 import zarr
 
 
@@ -271,7 +271,7 @@ def get_image(images_dict, camera_names, rand_crop_resize=False):
 
 
 if __name__ == "__main__":
-    config_path = "/isaac-sim/src/frankapy/src/configs/control_by_model1010_1.yaml"
+    config_path = "/path/to/your/config.yaml"
     with open(config_path, "r") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
     main(config)

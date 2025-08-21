@@ -61,10 +61,10 @@ def show_pose(camera_pose, size=0.1):
 
 
 def test_marker():
-    data_root = "/home/pjlab/.local/share/ov/pkg/isaac-sim-4.0.0/src/frankapy/tests/test-marker/data"
+    data_root = "/path/to/your/data/dir"
     data_root = Path(data_root)
     calibration_root = (
-        "/home/pjlab/.local/share/ov/pkg/isaac-sim-4.0.0/src/assets/calibration"
+        "/path/to/your/calibration/dir"
     )
     robot = rtb.models.Panda()
     item_to_show = []
@@ -163,7 +163,7 @@ def test_marker():
     print(np.mean(marker_2_base_list, axis=0))
     o3d.visualization.draw_geometries(item_to_show)
     np.save(
-        "/home/pjlab/.local/share/ov/pkg/isaac-sim-4.0.0/src/assets/marker_2_base.npy",
+        "/path/to/your/marker_2_base.npy",
         np.mean(marker_2_base_list, axis=0),
     )
     print("saved")

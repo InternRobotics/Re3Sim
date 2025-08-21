@@ -3,7 +3,7 @@ import panda_py
 import h5py
 from pathlib import Path
 import time
-from src.frankapy.src.realsense_reader import MultiRealSenseCamera
+from realsense_reader import MultiRealSenseCamera
 from PIL import Image
 from matplotlib import pyplot as plt
 import os

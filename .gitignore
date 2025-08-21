@@ -7,14 +7,10 @@ ssd-logs/
 docker/proxy_on.sh
 apriltag-imgs
 act/
-frankapy/tests/
-frankapy/logs/
 .github
 assets
 .catkin_*
-frankapy/catkin_ws/src/CMakeLists.txt
 .auto-run-docker/
-frankapy/act-output
 tmp/
 .eval-run-docker
 wbl_*
@@ -22,7 +18,6 @@ urdf
 calib_logs/
 curobo/
 .vscode/
-frankapy/
 3dgsr/
 *3d*
 dp_for_r2s

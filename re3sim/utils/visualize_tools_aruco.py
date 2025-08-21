@@ -13,7 +13,7 @@ from real2sim2real.utils.frame_tools import (
 from pathlib import Path
 import roboticstoolbox as rtb
 from typing import List
-from real2sim2real.frankapy.src.utils.arcuo_marker import estimate_pose
+from real2sim2real.utils.arcuo_marker import estimate_pose
 
 
 def align_frame(res_list):
